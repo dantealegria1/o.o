@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% block title %} MainPage {% endblock %} 
+
+{% block content %}
+    <h1>welcome</h1>
+    <p>Welcome to the main page</p>
+    <div>
+        <div>
+            <p>Allready have an account?
+            <a href="{% url 'login' %}">Log in</a> 
+            </p>
+        </div>
+        <a href="{% url 'signup' %}">Sign up</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+dantealegria
+dante1408
+
+andrea
+hola
+
+dependencias
+- Django
+- Jinja2
