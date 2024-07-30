@@ -1,9 +1,18 @@
+SuperUsuario
 dantealegria
 dante1408
 
+Usuario de Prueba
 andrea
 hola
 
 dependencias
 - Django
 - Jinja2
+
+Para correrlo
+- python3 manage.py runserver    
+
+Para crear una nueva applicacion
+- python3 manage.py startapp [Nombre de la aplicacion]
+
