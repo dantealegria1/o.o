@@ -1,15 +1,31 @@
-{% extends "base.html" %} 
-{% block title %} MainPage {% endblock %} 
+{% extends "base.html" %}
+{% load static %}
+{% block title %} MainPage {% endblock %}
 
 {% block content %}
-    <h1>welcome</h1>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <h1 class="poppins-bold">Welcome</h1>
     <p>Welcome to the main page</p>
     <div>
         <div>
-            <p>Allready have an account?
-            <a href="{% url 'login' %}">Log in</a> 
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
             </p>
         </div>
-        <a href="{% url 'signup' %}">Sign up</a>
     </div>
+
+    <button class="ui-btn" id="button_logIn">
+        <span>
+          Start now 
+        </span>
+      </button>
+
+    <script>
+        document.getElementById('button_logIn').addEventListener('click', function() {
+            window.location.href = "{% url 'login' %}";
+        });
+    </script>
+
 {% endblock %}
