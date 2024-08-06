@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>{{ post.title }}</h1>
-  <p>{{ post.author }} | {{ post.created_at }}</p>
+  <p>{{ post.author }} | {{ post.published_at }}</p>
   <p>{{ post.content }}</p>
   <div>
     <span>{{ post.total_likes }} Likes</span>
@@ -42,8 +42,8 @@
   {% for comment in comments %}
       <div>
           <strong>{{ comment.name }} | {{ comment.author }}</strong>
-          <p>{{ comment.body }}</p>
           <p>{{ comment.created_at }}</p>
+          <p>{{ comment.body }}</p>
       </div>
   {% endfor %}
   <h2>Add a new comment</h2>

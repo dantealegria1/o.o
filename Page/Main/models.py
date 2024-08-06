@@ -6,7 +6,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    published_at = models.DateTimeField(blank=True, null=True)
+    published_at = models.DateTimeField(default=timezone.now)
 
     def publish(self):
         self.published_at = timezone.now()

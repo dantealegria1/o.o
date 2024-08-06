@@ -19,6 +19,7 @@ def post_detail(request, post_id):
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
+            new_comment.author = request.user
             new_comment.save()
     else:
         comment_form = CommentForm()
@@ -38,7 +39,7 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.created_at = timezone.now()
+            post.published_at = timezone.now()
             post.save()
             return redirect('post_detail', post_id=post.id)
     else:
