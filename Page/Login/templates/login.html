@@ -3,25 +3,22 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
-    <form id="loginForm" method="post">{% csrf_token %}
-        <div >
-            <input class="input" type="text" name="name" placeholder="name" required>
-        </div>
-        
-        <div>
-            <input class="input" type="password" name="password" placeholder="Password" required>
-        </div>
-        <div>
-            <button type="submit">Log in</button>
-        </div>
-    </form>
-    <div>
-        <p>Don't have a account?
-        <a href="{% url 'signup' %}">Sign up</a>
-        </p>
-    </div>
 
+    <div class = "login">
+
+        <h2>Login</h2>
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+            <div>
+                <p>Don't have a account?
+                <a href="{% url 'signup' %}">Sign up</a>
+                </p>
+            </div>
+
+    </div>
     <!-- Include SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -46,7 +43,7 @@
                         title: 'User logged in',
                         text: 'Welcome!',
                     }).then(() => {
-                        window.location.href = "{% url 'home' %}";
+                        window.location.href = "{% url 'post_list' %}";
                     });
                 } else {
                     Swal.fire({
