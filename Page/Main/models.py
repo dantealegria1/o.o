@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -12,25 +13,30 @@ class Post(models.Model):
         self.published_at = timezone.now()
         self.save()
 
+    def short_content(self):
+        return self.content[:100] + '...'
+
     def __str__(self):
         return self.title
-    
+
     def total_likes(self):
         return self.likes.count()
 
     def total_dislikes(self):
         return self.dislikes.count()
-    
+
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
-    author = models.CharField(max_length=80)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
+
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -39,6 +45,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user} likes {self.post}"
+
 
 class Dislike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

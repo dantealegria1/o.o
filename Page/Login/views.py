@@ -4,8 +4,10 @@ from .models import User
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 
+
 def index(request):
     return render(request, 'index.html')
+
 
 def login(request):
     if request.method == 'POST':
@@ -24,6 +26,7 @@ def login(request):
 
     return render(request, 'login.html', {'form': LoginForm()})
 
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -36,7 +39,7 @@ def signup(request):
             return JsonResponse({'success': True})
     return render(request, 'signup.html', {'form': LoginForm()})
 
+
 def users(request):
     items = User.objects.all()
-    return render(request, 'users.html', {'users': items })
-
+    return render(request, 'users.html', {'users': items})

@@ -3,11 +3,14 @@ from django.utils import timezone  # Add this line to import the timezone module
 from .models import Post, Like, Dislike
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 def post_list(request):
     posts = Post.objects.filter(published_at__lte=timezone.now()).order_by('published_at')
     return render(request, 'post_list.html', {'posts': posts})
+
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -33,6 +36,7 @@ def post_detail(request, post_id):
         'is_disliked': post.dislikes.filter(user=request.user).exists(),
     })
 
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -46,6 +50,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'post_new.html', {'form': form})
 
+
 def like_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if post.dislikes.filter(user=request.user).exists():
@@ -53,6 +58,7 @@ def like_post(request, post_id):
     if not post.likes.filter(user=request.user).exists():
         Like.objects.create(user=request.user, post=post)
     return redirect('post_detail', post_id=post.id)
+
 
 def dislike_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
